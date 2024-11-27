@@ -44,6 +44,7 @@ De projectbestanden bevinden zich in de map `src/HypotheekInzicht`. De klassen z
 
 ## Toekomstige uitbreidingen
 
+- Add graphical user interface
 - Nog niet alle gegevens staan in rechte rijtjes als het programma wordt uitgevoerd.
 - Het hypotheek nummer automatisch laten genereren.
 
