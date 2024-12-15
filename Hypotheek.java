@@ -5,14 +5,22 @@ package hypotheekinzicht;
  * @author GCleophas
  */
 public abstract class Hypotheek implements Product{
-    private int hypotheekNummer;
+    private static int hypotheekNummer;
     private String hypotheekBeschrijving;
     private double hypotheekRente;
     private double hypotheekSom;
     private int hypotheekLooptijd;
     
+    //LauncherV2
+    public StringBuilder resultJaar = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Jaar</b><br>");
+    public StringBuilder resultRestSchuld = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Rest schuld</b><br>");
+    public StringBuilder resultAflossing = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Aflossing</b><br>");
+    public StringBuilder resultRente = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Rente</b><br>");
+    public StringBuilder resultInleg = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Inleg</b><br>");
+    public StringBuilder resultGespaardBedrag = new StringBuilder("<html><div style='text-align: right; font-size: 18px;'><b>Gespaard bedrag</b><br>");
+    
     //Constructors
-    public Hypotheek(int hypotheekNummer, String hypotheekBeschrijving, double hypotheekRente, double hypotheekSom, int hypotheekLooptijd) throws NegativeValueException{
+    public Hypotheek(String hypotheekBeschrijving, double hypotheekRente, double hypotheekSom, int hypotheekLooptijd) throws NegativeValueException{
         if(hypotheekSom < 0) {
             throw new NegativeValueException("Hypotheeksom kan niet negatief zijn.");
         }
@@ -22,15 +30,19 @@ public abstract class Hypotheek implements Product{
         if(hypotheekLooptijd < 0) {
             throw new NegativeValueException("Looptijd kan niet negatief zijn.");
         }
-        this.hypotheekNummer = hypotheekNummer;
         this.hypotheekBeschrijving = hypotheekBeschrijving;
         this.hypotheekRente = hypotheekRente;
         this.hypotheekSom = hypotheekSom;
         this.hypotheekLooptijd = hypotheekLooptijd;
+        hypotheekNummer++;
     }
     
     //Getters
     public abstract void getHypotheekInzicht();
+    
+    public abstract String getHypotheekInzichtGUI();
+    
+    public abstract void berekenHypotheek();
     
     @Override
     public int getHypotheekNummer() {
@@ -59,8 +71,8 @@ public abstract class Hypotheek implements Product{
     
     //Setters
 
-    public void setHypotheekNummer(int hypotheekNummer) {
-        this.hypotheekNummer = hypotheekNummer;
+    public void setHypotheekNummer() {
+        Hypotheek.hypotheekNummer = hypotheekNummer++;
     }
 
     public void setHypotheekBeschrijving(String hypotheekBeschrijving) {
